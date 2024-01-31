@@ -53,5 +53,6 @@
             Kickboxing,
             KoreanTaekwondo
         }
+        
     }
 }

@@ -18,6 +18,7 @@ namespace GYMManagementSystem.Models.EntityConfiguration
             //Size 
             builder.Property(x => x.FullName).HasMaxLength(14);
             builder.Property(x => x.PassWord).HasMaxLength(15);
+            builder.Property(x => x.NationalID).HasMaxLength(10);
             builder.Property(x => x.HealthStatus).HasMaxLength(20);
             builder.Property(x => x.Specialization).HasMaxLength(20);
             builder.Property(x => x.Certifications).HasMaxLength(20);
@@ -27,6 +28,7 @@ namespace GYMManagementSystem.Models.EntityConfiguration
             //Unique Constraint
             builder.HasIndex(x => x.Email).IsUnique();
             builder.HasIndex(x => x.PhoneNumber).IsUnique();
+            builder.HasIndex(x => x.NationalID).IsUnique();
             //Check Constraint
             builder.ToTable(t => t.HasCheckConstraint("CH_Person_FullName", "LENGTH(FullName) >= 3"));
             builder.ToTable(t => t.HasCheckConstraint("CH_Person_PassWord", "PassWord LIKE '[1-9]'"));
