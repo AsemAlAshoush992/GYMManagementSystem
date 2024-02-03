@@ -8,7 +8,6 @@ namespace GYMManagementSystem.Models.Entities
         public string Description { get; set; }
         public MembershipType Type { get; set; }
         public float Price { get; set; }
-        public SubscriptionStatus SubscriptionStatus { get; set; }
         public int DurationInDays { get; set; }
         public int TrainingHoursInDay { get; set; }
         public int MaxNumberOfVisits { get; set; }

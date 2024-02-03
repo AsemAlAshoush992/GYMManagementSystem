@@ -7,6 +7,7 @@
             Male,
             Female
         }
+        
         public enum MembershipType
         {
             Basic,
@@ -14,13 +15,6 @@
             Gold,
             Family,
             VIP
-        }
-        public enum PaymentMethod
-        {
-            Cash,
-            CreditCard,
-            ZainCash,
-            OrangeMony
         }
         public enum IntensityLevel
         {
@@ -34,14 +28,6 @@
             Admin,
             client,
             Coach
-        }
-
-        public enum SubscriptionStatus
-        {
-            Activate,
-            Reactivate,
-            Disactivate,
-            Expired,
         }
         public enum CourseTrainingName
         {

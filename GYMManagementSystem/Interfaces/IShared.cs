@@ -10,10 +10,10 @@ namespace GYMManagementSystem.Interfaces
         //Get All Subscriptions
         Task<List<GetAllSubscriptionsDTO>> GetAllSubscriptions();
         //Filltering Subscriptions By price, duration in date and Type 
-        //Task<List<GetAllSubscriptionsDTO>> GetAllSubscriptions( float price, string type, int duration);
-        ////Create New Account
-        //Task CreateNewAccount(CreateClientDTO dto);
-        ////Login In Account
-        //Task Login(LoginDTO dto);
+        Task<List<GetAllSubscriptionsDTO>> FillteringSubscriptions( float? price, int? type, int? duration);
+        //Create New Account
+        Task CreateNewAccount(CreateClientDTO dto);
+        //Login In Account
+        Task Login(LoginDTO dto);
     }
 }

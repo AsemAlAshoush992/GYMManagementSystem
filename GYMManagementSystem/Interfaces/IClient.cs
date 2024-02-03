@@ -1,7 +1,10 @@
-﻿namespace GYMManagementSystem.Interfaces
+﻿using GYMManagementSystem.DTOs.Admin.Subscription;
+
+namespace GYMManagementSystem.Interfaces
 {
     public interface IClient
     {
-        //Registered in specific subscription 
+        //Register in specific subscription 
+        Task RegisterSubscription(RegisterNewSubscriptionDTO dto);
     }
 }

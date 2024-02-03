@@ -10,10 +10,12 @@ namespace GYMManagementSystem.DTOs.Admin.Person
         public string NationalID { get; set; }
         public string PassWord { get; set; }
         public DateTime BirthDate { get; set; }
-        public GenderType genderType { get; set; }
-        public PersonType personType { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
+        public string genderType { get; set; }
+        //public string personType { get; set; }
+        public int Age { get; set; }
+        public IFormFile Image { get; set; }
+        public byte Height { get; set; }
+        public byte Weight { get; set; }
         public string HealthStatus { get; set; }
     }
 }

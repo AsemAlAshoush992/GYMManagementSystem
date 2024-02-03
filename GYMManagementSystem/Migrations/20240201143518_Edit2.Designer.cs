@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GYMManagementSystem.Migrations
 {
     [DbContext(typeof(GYMManagementSystemDbContext))]
-    [Migration("20240131151705_Intial1")]
-    partial class Intial1
+    [Migration("20240201143518_Edit2")]
+    partial class Edit2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(3691));
+                        .HasDefaultValue(new DateTime(2024, 2, 1, 17, 35, 18, 499, DateTimeKind.Local).AddTicks(8487));
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(4460));
+                        .HasDefaultValue(new DateTime(2024, 2, 1, 17, 35, 18, 499, DateTimeKind.Local).AddTicks(9391));
 
                     b.Property<string>("Description")
                         .HasMaxLength(100)
@@ -109,14 +109,13 @@ namespace GYMManagementSystem.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Certifications")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(7046));
+                        .HasDefaultValue(new DateTime(2024, 2, 1, 17, 35, 18, 500, DateTimeKind.Local).AddTicks(3893));
 
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
@@ -125,6 +124,9 @@ namespace GYMManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(14)
@@ -132,23 +134,26 @@ namespace GYMManagementSystem.Migrations
                         .HasColumnType("varchar(14)");
 
                     b.Property<string>("HealthStatus")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)")
                         .HasDefaultValue("Uninfected");
 
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
+                    b.Property<byte?>("Height")
+                        .HasColumnType("tinyint unsigned");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(true);
+
+                    b.Property<string>("NationalID")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("PassWord")
                         .IsRequired()
@@ -166,17 +171,22 @@ namespace GYMManagementSystem.Migrations
                         .HasDefaultValue(260f);
 
                     b.Property<string>("Specialization")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("SubscriptionID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
+                    b.Property<byte?>("Weight")
+                        .HasColumnType("tinyint unsigned");
 
                     b.Property<int>("genderType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("personType")
                         .HasColumnType("int");
 
                     b.HasKey("PersonID");
@@ -184,6 +194,9 @@ namespace GYMManagementSystem.Migrations
                     b.HasIndex("DepartmentID");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("NationalID")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")
@@ -197,9 +210,11 @@ namespace GYMManagementSystem.Migrations
 
                             t.HasCheckConstraint("CH_Person_FullName", "LENGTH(FullName) >= 3");
 
-                            t.HasCheckConstraint("CH_Person_PassWord", "PassWord LIKE '[1-9]'");
+                            t.HasCheckConstraint("CH_Person_PassWord", "LENGTH(PassWord) >= 8");
 
                             t.HasCheckConstraint("CH_Person_PhoneNumber", "PhoneNumber LIKE '009627________'");
+
+                            t.HasCheckConstraint("CH_Person_StartDate", "EndDate > StartDate AND StartDate > sysdate() AND EndDate > sysdate()");
                         });
                 });
 
@@ -212,7 +227,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(9028));
+                        .HasDefaultValue(new DateTime(2024, 2, 1, 17, 35, 18, 500, DateTimeKind.Local).AddTicks(7419));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -222,9 +237,6 @@ namespace GYMManagementSystem.Migrations
 
                     b.Property<int>("DurationInDays")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -239,9 +251,6 @@ namespace GYMManagementSystem.Migrations
                         .HasColumnType("float")
                         .HasDefaultValue(15f);
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<int>("SubscriptionStatus")
                         .HasColumnType("int");
 
@@ -253,10 +262,7 @@ namespace GYMManagementSystem.Migrations
 
                     b.HasKey("SubscriptionID");
 
-                    b.ToTable("Subscription", null, t =>
-                        {
-                            t.HasCheckConstraint("CH_Subscription_StartDate", "EndDate > StartDate AND StartDate > sysdate() AND EndDate > sysdate()");
-                        });
+                    b.ToTable("Subscription", (string)null);
                 });
 
             modelBuilder.Entity("GYMManagementSystem.Models.Entities.TrainingCourse", b =>
@@ -268,7 +274,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 1, 31, 18, 17, 4, 686, DateTimeKind.Local).AddTicks(88));
+                        .HasDefaultValue(new DateTime(2024, 2, 1, 17, 35, 18, 500, DateTimeKind.Local).AddTicks(8733));
 
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
@@ -320,7 +326,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 1, 31, 18, 17, 4, 686, DateTimeKind.Local).AddTicks(1070));
+                        .HasDefaultValue(new DateTime(2024, 2, 1, 17, 35, 18, 501, DateTimeKind.Local).AddTicks(199));
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()

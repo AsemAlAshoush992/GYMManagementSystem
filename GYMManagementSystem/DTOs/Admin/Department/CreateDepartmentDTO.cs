@@ -4,6 +4,6 @@
     {
         public string NameInArabic { get; set; }
         public string NameInEnglish { get; set; }
-        public string Description { get; }
+        public string Description { get; set; }
     }
 }

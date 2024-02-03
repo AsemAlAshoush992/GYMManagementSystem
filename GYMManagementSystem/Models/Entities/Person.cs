@@ -12,22 +12,22 @@ namespace GYMManagementSystem.Models.Entities
         public string PassWord { get; set; }
         public DateTime BirthDate { get; set; }
         public int Age { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
+        public byte? Height { get; set; }
+        public byte? Weight { get; set; }
         public string HealthStatus { get; set; }
-        public string Image { get; set; }
+        public byte[]? Image { get; set; }
         public GenderType genderType { get; set; }
         public PersonType personType { get; set; }
         public string Specialization { get; set; }
         public string Certifications { get; set; }
-        public DateTime StartDateSubscription { get; set; }
-        public DateTime EndDateSubscription { get; set; }
-        public virtual Department Department { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public virtual Department? Department { get; set; }
         public virtual List<CoachTrainingCourse> Course { get; set; }
-        public virtual Subscription Subscription { get; set; }
+        public virtual Subscription? Subscription { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreateionDate { get; set; }
-        public float Salary { get; set; }
+        public float? Salary { get; set; }
         public class Client : Person
         { 
         

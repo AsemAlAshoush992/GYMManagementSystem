@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace GYMManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class Intial1 : Migration
+    public partial class ENdpoints : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,7 @@ namespace GYMManagementSystem.Migrations
                     NameInEnglish = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false, defaultValue: "Training and Observing"),
                     Description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
-                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(4460))
+                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 22, 53, 24, 392, DateTimeKind.Local).AddTicks(1824))
                 },
                 constraints: table =>
                 {
@@ -41,8 +41,6 @@ namespace GYMManagementSystem.Migrations
                 {
                     SubscriptionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    StartDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Description = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<float>(type: "float", nullable: false, defaultValue: 15f),
@@ -51,12 +49,11 @@ namespace GYMManagementSystem.Migrations
                     TrainingHoursInDay = table.Column<int>(type: "int", nullable: false),
                     MaxNumberOfVisits = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
-                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(9028))
+                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 22, 53, 24, 393, DateTimeKind.Local).AddTicks(2271))
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Subscription", x => x.SubscriptionID);
-                    table.CheckConstraint("CH_Subscription_StartDate", "EndDate > StartDate AND StartDate > sysdate() AND EndDate > sysdate()");
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -73,7 +70,7 @@ namespace GYMManagementSystem.Migrations
                     intensityLevel = table.Column<int>(type: "int", nullable: false),
                     Schedule = table.Column<string>(type: "longtext", nullable: false),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
-                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 18, 17, 4, 686, DateTimeKind.Local).AddTicks(88)),
+                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 22, 53, 24, 393, DateTimeKind.Local).AddTicks(4015)),
                     DepartmentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -97,6 +94,7 @@ namespace GYMManagementSystem.Migrations
                     FullName = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
                     Email = table.Column<string>(type: "varchar(255)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "varchar(255)", nullable: false),
+                    NationalID = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
                     PassWord = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
@@ -105,12 +103,15 @@ namespace GYMManagementSystem.Migrations
                     HealthStatus = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false, defaultValue: "Uninfected"),
                     Image = table.Column<string>(type: "longtext", nullable: false),
                     genderType = table.Column<int>(type: "int", nullable: false),
+                    personType = table.Column<int>(type: "int", nullable: false),
                     Specialization = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
                     Certifications = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     DepartmentID = table.Column<int>(type: "int", nullable: false),
                     SubscriptionID = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
-                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(7046)),
+                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 22, 53, 24, 392, DateTimeKind.Local).AddTicks(7832)),
                     Salary = table.Column<float>(type: "float", nullable: false, defaultValue: 260f)
                 },
                 constraints: table =>
@@ -120,6 +121,7 @@ namespace GYMManagementSystem.Migrations
                     table.CheckConstraint("CH_Person_FullName", "LENGTH(FullName) >= 3");
                     table.CheckConstraint("CH_Person_PassWord", "PassWord LIKE '[1-9]'");
                     table.CheckConstraint("CH_Person_PhoneNumber", "PhoneNumber LIKE '009627________'");
+                    table.CheckConstraint("CH_Person_StartDate", "EndDate > StartDate AND StartDate > sysdate() AND EndDate > sysdate()");
                     table.ForeignKey(
                         name: "FK_Person_Department_DepartmentID",
                         column: x => x.DepartmentID,
@@ -142,7 +144,7 @@ namespace GYMManagementSystem.Migrations
                     TrainingCourseSubscriptionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
-                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 18, 17, 4, 686, DateTimeKind.Local).AddTicks(1070)),
+                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 22, 53, 24, 393, DateTimeKind.Local).AddTicks(6055)),
                     SubscriptionID = table.Column<int>(type: "int", nullable: false),
                     TrainingCourseID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -171,7 +173,7 @@ namespace GYMManagementSystem.Migrations
                     CoachTrainingCourseID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: true),
-                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 18, 17, 4, 685, DateTimeKind.Local).AddTicks(3691)),
+                    CreateionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2024, 1, 31, 22, 53, 24, 392, DateTimeKind.Local).AddTicks(302)),
                     TrainingCourseID = table.Column<int>(type: "int", nullable: false),
                     CoachPersonID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -212,6 +214,12 @@ namespace GYMManagementSystem.Migrations
                 name: "IX_Person_Email",
                 table: "Person",
                 column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_NationalID",
+                table: "Person",
+                column: "NationalID",
                 unique: true);
 
             migrationBuilder.CreateIndex(

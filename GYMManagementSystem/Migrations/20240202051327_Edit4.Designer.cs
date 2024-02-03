@@ -3,6 +3,7 @@ using System;
 using GYMManagementSystem.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GYMManagementSystem.Migrations
 {
     [DbContext(typeof(GYMManagementSystemDbContext))]
-    partial class GYMManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240202051327_Edit4")]
+    partial class Edit4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +34,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 2, 2, 10, 39, 52, 24, DateTimeKind.Local).AddTicks(6267));
+                        .HasDefaultValue(new DateTime(2024, 2, 2, 8, 13, 27, 627, DateTimeKind.Local).AddTicks(8867));
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -59,7 +62,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 2, 2, 10, 39, 52, 24, DateTimeKind.Local).AddTicks(7063));
+                        .HasDefaultValue(new DateTime(2024, 2, 2, 8, 13, 27, 627, DateTimeKind.Local).AddTicks(9832));
 
                     b.Property<string>("Description")
                         .HasMaxLength(100)
@@ -112,7 +115,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 2, 2, 10, 39, 52, 24, DateTimeKind.Local).AddTicks(9580));
+                        .HasDefaultValue(new DateTime(2024, 2, 2, 8, 13, 27, 628, DateTimeKind.Local).AddTicks(4074));
 
                     b.Property<int?>("DepartmentID")
                         .HasColumnType("int");
@@ -222,7 +225,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 2, 2, 10, 39, 52, 25, DateTimeKind.Local).AddTicks(2033));
+                        .HasDefaultValue(new DateTime(2024, 2, 2, 8, 13, 27, 628, DateTimeKind.Local).AddTicks(6522));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -266,7 +269,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 2, 2, 10, 39, 52, 25, DateTimeKind.Local).AddTicks(3408));
+                        .HasDefaultValue(new DateTime(2024, 2, 2, 8, 13, 27, 628, DateTimeKind.Local).AddTicks(8117));
 
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
@@ -318,7 +321,7 @@ namespace GYMManagementSystem.Migrations
                     b.Property<DateTime>("CreateionDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2024, 2, 2, 10, 39, 52, 25, DateTimeKind.Local).AddTicks(4433));
+                        .HasDefaultValue(new DateTime(2024, 2, 2, 8, 13, 27, 628, DateTimeKind.Local).AddTicks(9663));
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()

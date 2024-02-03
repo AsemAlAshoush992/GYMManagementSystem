@@ -18,8 +18,6 @@ namespace GYMManagementSystem.Models.EntityConfiguration
             builder.Property(x => x.Description).HasMaxLength(25);
             //Nvarchar
             builder.Property(x => x.Description).IsUnicode();
-            //Check Constraint
-            builder.ToTable(t => t.HasCheckConstraint("CH_Subscription_StartDate", "EndDate > StartDate AND StartDate > sysdate() AND EndDate > sysdate()"));
             //Computed Column
             //builder.Property(x => x.DurationInDays).HasComputedColumnSql("DATEDIFF(DAY, [StartDate], [EndDate])");
         }
